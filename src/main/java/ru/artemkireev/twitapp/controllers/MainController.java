@@ -19,6 +19,12 @@ public class MainController {
     @Autowired
     private MessageRepo messageRepo;
 
+
+    @GetMapping
+    public String hello() {
+        return "hello";
+    }
+
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<Message> messages = messageRepo.findAll();
