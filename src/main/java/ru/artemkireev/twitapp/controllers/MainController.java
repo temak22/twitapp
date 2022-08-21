@@ -1,6 +1,7 @@
 package ru.artemkireev.twitapp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.artemkireev.twitapp.entities.Message;
 import ru.artemkireev.twitapp.repositories.MessageRepo;
+import ru.artemkireev.twitapp.security.entities.User;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +20,6 @@ public class MainController {
 
     @Autowired
     private MessageRepo messageRepo;
-
 
     @GetMapping
     public String hello() {
@@ -33,10 +34,11 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String addMessage(@RequestParam String text,
+    public String addMessage(@AuthenticationPrincipal User user,
+                             @RequestParam String text,
                              @RequestParam String tag,
                              Map<String, Object> model) {
-        Message message = new Message(text, tag);
+        Message message = new Message(text, tag, user);
         messageRepo.save(message);
         Iterable<Message> messages = messageRepo.findAll();
         model.put("messages", messages);
