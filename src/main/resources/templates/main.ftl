@@ -14,9 +14,8 @@
     </div>
     <br>
     <p>Messages</p>
-    <form method="post" action="/filter">
-        <input type="text" name="filter">
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <form method="get" action="/main">
+        <input type="text" name="filter" value="${filter}">
         <button type="submit">Search</button>
     </form>
     <#list messages as message>
@@ -27,6 +26,6 @@
             <strong>${message.authorName}</strong>
         </div>
         <#else>
-        No messages yet
+        <p>No results</p>
     </#list>
 </@c.page>
