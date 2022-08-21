@@ -12,7 +12,6 @@ import ru.artemkireev.twitapp.entities.Message;
 import ru.artemkireev.twitapp.repositories.MessageRepo;
 import ru.artemkireev.twitapp.security.entities.User;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller

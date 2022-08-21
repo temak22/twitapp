@@ -4,6 +4,8 @@
 <@c.page>
     <@l.logout/>
     <br>
+    <a href="/user">User list</a>
+    <hr>
     <div>
         <form method="post">
             <input type="text" name="text" placeholder="Message">
