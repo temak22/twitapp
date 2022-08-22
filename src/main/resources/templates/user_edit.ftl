@@ -5,6 +5,7 @@
     <hr>
     <form action="/user" method="post">
         <input type="text" value="${user.username}" name="username">
+        <input type="text" value="${user.password}" name="password">
         <#list roles as role>
             <div>
                 <label>
